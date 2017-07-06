@@ -1,0 +1,44 @@
+{
+  "name": "wxa-vue-element",
+  "version": "0.1.0",
+  "description": "使用vue实现小程序的标签/组件",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --progress -w",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.23.0",
+    "vue": "^2.3.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-runtime": "^6.23.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.9.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.4",
+    "style-loader": "^0.18.2",
+    "vue-loader": "^12.1.0",
+    "vue-template-compiler": "^2.3.3",
+    "webpack": "^2.6.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imingyu/wxa-vue-element.git"
+  },
+  "author": "",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/imingyu/wxa-vue-element/issues"
+  },
+  "homepage": "https://github.com/imingyu/wxa-vue-element#readme"
+}
