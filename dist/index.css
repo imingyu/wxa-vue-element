@@ -1,2 +1,9 @@
-.wxa-is-hidden{display:none}.wxa-view{display:block}
+
+.wxa-view {
+    display: block;
+}
+.wxa-is-hidden {
+  display: none;
+}
+
 /*# sourceMappingURL=index.css.map*/

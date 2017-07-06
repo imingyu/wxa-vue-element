@@ -5,10 +5,18 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractTextPlugin = new ExtractTextPlugin('index.css')
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js',
+        polyfill: [
+            'core-js/fn/array/from',
+            'core-js/fn/array/filter',
+            'core-js/fn/array/map',
+            'core-js/fn/array/for-each'
+        ]
+    },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'index.js'
+        filename: '[name].js'
     },
     module: {
         rules: [
@@ -48,14 +56,10 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
-    devServer: {
-        historyApiFallback: true,
-        noInfo: true
-    },
     performance: {
         hints: false
     },
-    devtool: '#eval-source-map',
+    devtool: '#source-map',
     plugins: [
         extractTextPlugin
     ]
