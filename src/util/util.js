@@ -5,6 +5,16 @@ export var warn = (msg) => {
     console.warn(`[Wxa warn]: ${msg}`);
 }
 
+export var uniqueArray=(arr)=>{
+    var result=[];
+    arr.forEach(item=>{
+        if(result.indexOf(item)==-1){
+            result.push(item);
+        }
+    })
+    return result;
+}
+
 export var each = (arr, cb) => {
     if (arr && arr.length && arr.length > 0) {
         for (let i = 0; i < arr.length; i++) {
