@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --progress -w",
     "watch-copy": "node build/demo.js",
-    "demo": "cd examples/demo cross-env NODE_ENV=development webpack --progress -w",
+    "demo": "cd examples/demo&&cross-env NODE_ENV=development node build/dev-server.js",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {

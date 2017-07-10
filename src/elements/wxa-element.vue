@@ -1,5 +1,5 @@
 <template>
-    <component :is="element" :class="['wxa-'+tag, hiddenStatus]" :data-wxa="tag">
+    <component :is="element" :class="['wxa-tag-'+tag, hiddenStatus]" :data-wxa="tag">
         <slot></slot>
     </component>
 </template>

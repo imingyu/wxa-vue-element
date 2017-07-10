@@ -1,3 +1,5 @@
+import mark from './mark.js';
+import * as element from './element.js';
 import * as util from './util.js';
 export var $on = (el, type, handler) => {
     el.$$handlers = el.$$handlers || {};
@@ -46,8 +48,55 @@ export var $off = (el, type) => {
 //broadcast：由父到子
 
 export class BaseEvent {
-    constructor(type, nativeEvent) {
+    constructor(type, nativeEvent, currentComponentInc) {
         this.type = type;
         this.timeStamp = nativeEvent.timeStamp || new Date().getTime();
+        this.target = {};
+        var target = nativeEvent.target;
+        if (element.isWxaElement(target)) {
+            Object.defineProperties(this.target, {
+                id: {
+                    get() {
+                        return target.id;
+                    },
+                    enumerable: true
+                },
+                tagName: {
+                    get() {
+                        return target.__vue__.$wxa.tagName;
+                    },
+                    enumerable: true
+                },
+                dataset: {
+                    get() {
+                        return target.__vue__.$wxa.dataset;
+                    },
+                    enumerable: true
+                }
+            })
+        }
+        this.currentTarget = {};
+        if (currentComponentInc) {
+            Object.defineProperties(this.currentTarget, {
+                id: {
+                    get() {
+                        return currentComponentInc.$el.id;
+                    },
+                    enumerable: true
+                },
+                tagName: {
+                    get() {
+                        return currentComponentInc.$wxa.tagName;
+                    },
+                    enumerable: true
+                },
+                dataset: {
+                    get() {
+                        return currentComponentInc.$wxa.dataset;
+                    },
+                    enumerable: true
+                }
+            });
+        }
     }
 }

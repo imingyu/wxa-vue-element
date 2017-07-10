@@ -2,8 +2,12 @@
 .wxa-view {
     display: block;
 }
+
+.wxa-text {
+    display: inline;
+}
 .wxa-is-hidden {
-  display: none;
+  display: none !important;
 }
 
 /*# sourceMappingURL=index.css.map*/
