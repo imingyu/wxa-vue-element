@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-require('./wxa-vue-element/common.less');
 import WxaVueElement from './wxa-vue-element/index';
 
 Vue.config.productionTip = false

@@ -44,8 +44,53 @@ export var $off = (el, type) => {
     }
 }
 
-//dispatch：由子到父
-//broadcast：由父到子
+var wxaEvents = ['tap', 'longtap', 'touchstart', 'touchmove', 'touchcancel', 'touchend'];
+export var valid = (component) => {
+    var comName = component.$options._componentTag,
+        listeners = component.$vnode.componentOptions.listeners || {},
+        propKeys = component.$options._propKeys || [];
+
+    //检查使用组件时是否含有非法事件
+    var notPassAttrs = [],
+        acceptAttrs,
+        validResult;
+    acceptAttrs = wxaEvents.concat(component.$wxa.events || []);
+    util.each(Object.keys(listeners), (key) => {
+        if (acceptAttrs.indexOf(key) == -1) {
+            if (propKeys.indexOf(key) === -1) {
+                notPassAttrs.push(key);
+            }
+        }
+    });
+    if (notPassAttrs.length > 0) {
+        util.error(`组件${comName}不接受${notPassAttrs.length > 1 ? '这些' : ''}事件${notPassAttrs.join(', ')}; 接受的事件列表为：${acceptAttrs.join(', ')}.`)
+    }
+    return notPassAttrs.length === 0;
+}
+
+//绑定组件上的事件映射
+export function binding(component) {
+    var listeners = component.$vnode.componentOptions.listeners || {};
+    Object.keys(listeners).forEach(key => {
+        if (wxaEvents.indexOf(key) != -1 && trigger[key]) trigger[key](component);
+    });
+}
+var trigger = {
+    tap: function (component) {
+        $off(component.$el, `click.wxa`);
+        $on(component.$el, `click.wxa`, function (e) {
+            var catchEvents = typeof component.catchEvents === 'string' ? [component.catchEvents] : (Array.isArray(component.catchEvents) ? component.catchEvents : []);
+            if (catchEvents.indexOf('tap') != -1) {
+                //阻止冒泡：对应小程序的bind*
+                e.stopPropagation();
+                component.$emit('tap', new BaseEvent('tap', e, component));
+            } else {
+                //不阻止冒泡：对应小程序的catch*
+                component.$emit('tap', new BaseEvent('tap', e, component));
+            }
+        });
+    }
+};
 
 export class BaseEvent {
     constructor(type, nativeEvent, currentComponentInc) {
@@ -104,5 +149,16 @@ export class BaseEvent {
 export class FormSubmitEvent extends BaseEvent {
     constructor(nativeEvent, currentComponentInc) {
         super('submit', nativeEvent, currentComponentInc);
+    }
+}
+
+class Touch {
+    constructor() {
+    }
+}
+
+export class TouchEvent extends BaseEvent {
+    constructor(type, nativeEvent, currentComponentInc) {
+        super(type, nativeEvent, currentComponentInc);
     }
 }

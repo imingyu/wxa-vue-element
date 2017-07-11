@@ -3,21 +3,13 @@ import WxaView from './elements/view.vue';
 import WxaText from './elements/text.vue';
 import WxaIcon from './elements/icon.vue';
 
-import tap from './directives/tap.js';
-
-const coms = [WxaView, WxaText, WxaIcon],
-    directives = [tap];
+const coms = [WxaView, WxaText, WxaIcon];
 
 var pluginSpec = {
     install: (Vue, options) => {
         //将组件安装到全局
         coms.forEach(item => {
             Vue.component(item.name, item);
-        });
-
-        //安装指令到全局
-        directives.forEach(item => {
-            Vue.directive(item.name, item);
         });
     }
 }
