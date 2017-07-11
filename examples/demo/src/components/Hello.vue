@@ -1,11 +1,15 @@
 <template>
-    <wxa-view>
-        <wxa-view id="view" :class="'hello-view'" v-tap="viewShow" data-name="imingyu" :data-obj="JSON.stringify(obj)">
-            你好<wxa-text v-tap="textShow">{{ msg }}</wxa-text><wxa-text v-tap.catch="textShow">text</wxa-text>
+    <wxa-view :class="'hello'">
+        <wxa-view id="view" @tap="viewShow" data-name="imingyu" data-age="2" :data-obj="obj" data-userName="tom" data-userage='20' data-user-address="上海" data-Company="同程">
+            你好
+            <wxa-text @tap="textShow">{{ msg }}</wxa-text>
+            <wxa-text @tap="textShow" :catchEvents="['tap']">text</wxa-text>
         </wxa-view>
-        <wxa-icon v-for="icon in icons" :class="'ac-'+icon" :type="icon" :key="icon" />
+        <wxa-view class="icons">
+            <wxa-icon v-for="icon in icons" :class="'ac-'+icon" :type="icon" :key="icon" />
+        </wxa-view>
 
-
+        <wxa-view id="touch1" @touchstart="touch">touchstart</wxa-view>
     </wxa-view>
 </template>
 
@@ -30,17 +34,20 @@ export default {
         },
         touch(event) {
             console.log('touchstart', event);
+        },
+        show(msg) {
+            console.log(msg);
         }
     }
 }
 </script>
 
 <style>
-.hello-view {
-    display: inline-block !important;
+.wxa-view {
     padding: 20px 40px;
     background: green;
     color: #fff;
+    margin-bottom: 10px;
 }
 
 .wxa-text {
@@ -49,5 +56,10 @@ export default {
     background: yellow;
     color: #000;
     margin: 10px;
+}
+
+.hello {
+    display: block!important;
+    background: none;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <WxaElement :tag="'view'" :element="'div'" :hidden="hidden">
+    <WxaElement :tag="'view'" :element="'div'" v-bind="$props">
         <slot></slot>
     </WxaElement>
 </template>
