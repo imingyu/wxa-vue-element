@@ -7,7 +7,6 @@ export var mixin = {
         hidden: Boolean
     },
     created() {
-        console.log(this);
         if (process.env.NODE_ENV !== 'development') return;
         prop.valid(this);
     },
@@ -24,6 +23,7 @@ export var getWxaDataset = (el) => {
         } catch (error) {
         }
     }
+    delete dataset.wxa;
     return dataset;
 }
 
@@ -32,9 +32,7 @@ export var getWxaTagName = (el) => {
     if (el.__vue__._vnode && el.__vue__._vnode.componentInstance) {
         return el.__vue__._vnode.componentInstance.tag;
     } else {
-        return el.attributes && el.attributes['data-wxa'] ? el.attributes['data-wxa'].value : (el.className || '').split(' ').find(item => {
-            return item.indexOf('wxa-tag-') == 0;
-        }).replace('wxa-tag-', '');
+        return el.attributes && el.attributes['data-wxa'] ? el.attributes['data-wxa'].value : 'unkown';
     }
 }
 

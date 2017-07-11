@@ -1,10 +1,11 @@
-require('./common.less');
+require('./styles/index.less');
 import WxaView from './elements/view.vue';
 import WxaText from './elements/text.vue';
+import WxaIcon from './elements/icon.vue';
 
 import tap from './directives/tap.js';
 
-const coms = [WxaView, WxaText],
+const coms = [WxaView, WxaText, WxaIcon],
     directives = [tap];
 
 var pluginSpec = {

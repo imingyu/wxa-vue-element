@@ -100,3 +100,9 @@ export class BaseEvent {
         }
     }
 }
+
+export class FormSubmitEvent extends BaseEvent {
+    constructor(nativeEvent, currentComponentInc) {
+        super('submit', nativeEvent, currentComponentInc);
+    }
+}

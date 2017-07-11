@@ -29,6 +29,7 @@
     "fs-extra": "^3.0.1",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",
+    "markdown-it": "^8.3.1",
     "style-loader": "^0.18.2",
     "vue-loader": "^12.1.0",
     "vue-template-compiler": "^2.3.3",
