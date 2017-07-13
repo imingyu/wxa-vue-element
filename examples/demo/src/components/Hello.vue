@@ -1,15 +1,17 @@
 <template>
     <wxa-view :class="'hello'">
-        <wxa-view id="view" @tap="viewShow" data-name="imingyu" data-age="2" :data-obj="obj" data-userName="tom" data-userage='20' data-user-address="上海" data-Company="同程">
+        <wxa-view id="view" @wxa-tap="viewShow($event,'嘿嘿嘿')" @wxa-touchstart="touch('view',$event)" @wxa-touchend="touch('view',$event)" data-name="imingyu" data-age="2" :data-obj="obj" data-userName="tom" data-userage='20' data-user-address="上海" data-Company="同程">
             你好
-            <wxa-text @tap="textShow">{{ msg }}</wxa-text>
-            <wxa-text @tap="textShow" :catchEvents="['tap']">text</wxa-text>
+            <wxa-text @wxa-tap="textShow">{{ msg }}</wxa-text>
+            <wxa-text @wxa-tap="textShow" @wxa-touchstart="touch('text',$event)" :catchEvents="['tap','touchstart']">text</wxa-text>
         </wxa-view>
         <wxa-view class="icons">
             <wxa-icon v-for="icon in icons" :class="'ac-'+icon" :type="icon" :key="icon" />
         </wxa-view>
 
-        <wxa-view id="touch1" @touchstart="touch">touchstart</wxa-view>
+        <wxa-view id="touch1" @wxa-touchstart="touch2">touchstart</wxa-view>
+
+        <wxa-view id="longtap" @wxa-longtap="longtap">longtap</wxa-view>
     </wxa-view>
 </template>
 
@@ -26,17 +28,23 @@ export default {
         }
     },
     methods: {
-        viewShow(event) {
-            console.log('view.show', event);
+        viewShow(event, msg) {
+            //console.log('view.show', event, msg);
         },
         textShow(event) {
             console.log('text.show', event);
         },
-        touch(event) {
-            console.log('touchstart', event);
+        touch(tag, event) {
+            console.log(`touch1==>tag=${tag}`, event);
         },
-        show(msg) {
-            console.log(msg);
+        touch2(e){
+            console.log(`touch2==>`, e);
+        },
+        show(msg, e) {
+            console.log(msg, e);
+        },
+        longtap(e){
+            console.log(e);
         }
     }
 }

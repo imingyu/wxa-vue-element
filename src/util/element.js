@@ -1,6 +1,6 @@
 import * as prop from './prop.js';
 import * as util from './util.js';
-import * as event from './event.js';
+import * as event from './event/index.js';
 import WxaElement from '../elements/wxa-element.vue';
 
 export function mixin(componentSpec) {
@@ -20,7 +20,6 @@ export function mixin(componentSpec) {
         mounted() {
             settingWxaValue.call(this, componentSpec);
             event.binding(this);
-            console.log(this);
         },
         components: {
             WxaElement
