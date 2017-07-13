@@ -5,10 +5,10 @@ export var warn = (msg) => {
     console.warn(`[Wxa warn]: ${msg}`);
 }
 
-export var uniqueArray=(arr)=>{
-    var result=[];
-    arr.forEach(item=>{
-        if(result.indexOf(item)==-1){
+export var uniqueArray = (arr) => {
+    var result = [];
+    arr.forEach(item => {
+        if (result.indexOf(item) == -1) {
             result.push(item);
         }
     })
@@ -162,4 +162,22 @@ export var $off = (el, type) => {
     } else {
         el.removeEventListener(type, handlers[type + '-real']);
     }
+}
+
+export var camelize = str => {
+    str = str || "";
+    return str.trim().replace(/(\-|_|\s)+(.)?/g, function (mathc, sep, c) {
+        return (c ? c.toUpperCase() : '');
+    });
+}
+
+export var convertStyle = styleContent => {
+    var result = {};
+    styleContent.split(';').forEach(item => {
+        var arr = item.split(':');
+        if((arr[0]+'').trim()!=''){
+            result[camelize(arr[0])] = arr[1];
+        }
+    });
+    return result;
 }

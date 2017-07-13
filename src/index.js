@@ -2,8 +2,10 @@ require('./styles/index.less');
 import WxaView from './elements/view.vue';
 import WxaText from './elements/text.vue';
 import WxaIcon from './elements/icon.vue';
+import WxaLabel from './elements/label.vue';
+import WxaCheckbox from './elements/checkbox.vue';
 
-const coms = [WxaView, WxaText, WxaIcon];
+const coms = [WxaView, WxaText, WxaIcon, WxaLabel, WxaCheckbox];
 
 var pluginSpec = {
     install: (Vue, options) => {
