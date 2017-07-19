@@ -1,10 +1,14 @@
 <template>
     <wxa-view>
-        <wxa-radio-group @wxa-change="cd">
-            <wxa-radio value="1">Gril</wxa-radio>
-            <wxa-radio value="2">Boy</wxa-radio>
+        <wxa-radio-group @wxa-change="cd2">
+            <wxa-radio-group @wxa-change="cd">
+                <wxa-radio value="1">Gril</wxa-radio>
+                <wxa-radio value="2">Boy</wxa-radio>
+            </wxa-radio-group>
+
+            <wxa-radio value="3">Un</wxa-radio>
+            <wxa-radio value="4">Un4</wxa-radio>
         </wxa-radio-group>
-        <wxa-radio value="3">Un</wxa-radio>
     </wxa-view>
 </template>
 
@@ -16,8 +20,11 @@ export default {
         }
     },
     methods: {
-        cd(e){
+        cd(e) {
             console.log(e);
+        },
+        cd2(e) {
+            console.log('cd2', e);
         }
     }
 }

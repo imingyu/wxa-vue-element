@@ -1,5 +1,6 @@
 <template>
     <wxa-view>
+        <wxa-button>你好</wxa-button>
     </wxa-view>
 </template>
 
@@ -11,15 +12,18 @@ export default {
         }
     },
     methods: {
+        cd(e) {
+            console.log(e);
+        },
+        cd2(e) {
+            console.log('cd2', e);
+        }
     }
 }
 </script>
 
 <style>
 .wxa-view {
-    padding: 20px 40px;
-    background: green;
-    color: #fff;
     margin: 20px;
 }
 </style>
