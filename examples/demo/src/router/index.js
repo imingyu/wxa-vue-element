@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Tap from '@/components/Tap'
 import Test from '@/components/Test'
 import CheckBoxGroupDemo from '@/components/CheckBoxGroupDemo'
+import Index from '@/components/Index'
 
 
 Vue.use(Router)
@@ -12,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'CheckBoxGroupDemo',
-      component: CheckBoxGroupDemo
+      name: 'Index',
+      component: Index
     }
   ]
 })
