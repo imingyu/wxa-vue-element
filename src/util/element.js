@@ -14,8 +14,8 @@ export function mixin(componentSpec) {
         },
         created() {
             if (process.env.NODE_ENV !== 'development') return;
-            prop.valid(this);
-            event.valid(this);
+            //prop.valid(this);
+            //event.valid(this);
         },
         mounted() {
             settingWxaValue.call(this, componentSpec);
@@ -23,6 +23,11 @@ export function mixin(componentSpec) {
         },
         components: {
             WxaElement
+        },
+        methods: {
+            $$closest(wxaTagName) {
+                return closest(this, wxaTagName);
+            }
         }
     };
 }
@@ -51,7 +56,7 @@ export var getWxaDataset = (el) => {
             } else {
                 result[prop] = ds[prop];
             }
-        }else{
+        } else {
             result[prop] = ds[prop];
         }
     }
@@ -98,9 +103,6 @@ function settingWxaValue(componentSpec) {
                 enumerable: true
             });
         }
-        if (this.$vnode && this.$vnode.componentOptions && this.$vnode.componentOptions.listeners) {
-            var listeners = this.$vnode.componentOptions.listeners;
-        }
     }
 
     if (componentSpec && componentSpec.$wxa) {
@@ -112,4 +114,14 @@ export function createElement(componentSpec) {
     componentSpec.mixins = componentSpec.mixins || [];
     componentSpec.mixins.push(mixin(componentSpec));
     return componentSpec;
+}
+
+export var closest = (componentInstance, wxaTagName) => {
+    var parent = componentInstance;
+    while (parent = parent.$parent) {
+        if (parent && parent.$wxa && parent.$wxa.tagName === wxaTagName) {
+            break;
+        }
+    }
+    return parent;
 }

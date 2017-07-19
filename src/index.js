@@ -4,8 +4,9 @@ import WxaText from './elements/text.vue';
 import WxaIcon from './elements/icon.vue';
 import WxaLabel from './elements/label.vue';
 import WxaCheckbox from './elements/checkbox.vue';
+import WxaCheckboxGroup from './elements/checkbox-group.vue';
 
-const coms = [WxaView, WxaText, WxaIcon, WxaLabel, WxaCheckbox];
+const coms = [WxaView, WxaText, WxaIcon, WxaLabel, WxaCheckbox, WxaCheckboxGroup];
 
 var pluginSpec = {
     install: (Vue, options) => {
