@@ -1,6 +1,6 @@
 <template>
     <WxaElement :tag="'radio'" :element="'label'" :hidden="hidden">
-        <input class="wxa-radio-native" type="radio" :name="field" @change="onChange" :value="$value" :disabled="$disabled" :checked="$checked">
+        <input class="wxa-radio-native" type="radio" :name="field" @change="onChange" :value="$$value" :disabled="$$disabled" :checked="$$checked">
         <span class="wxa-radio-inner" :style="{color:color}"></span>
         <slot></slot>
     </WxaElement>
@@ -60,7 +60,7 @@ export default util.createElement({
         }
     },
     computed: {
-        $value() {
+        $$value() {
             var val = this.value;
             if (val === null || val === undefined || (typeof val === 'number' && isNaN(val))) {
                 return '';
@@ -68,10 +68,10 @@ export default util.createElement({
                 return val + '';
             }
         },
-        $checked() {
+        $$checked() {
             return !isFalse(this.checked);
         },
-        $disabled() {
+        $$disabled() {
             return !isFalse(this.disabled);
         }
     },
@@ -88,10 +88,10 @@ export default util.createElement({
                     this.field = group.field;
                 }
                 if (!isFalse(checked)) {
-                    group.value = this.$value;
+                    group.value = this.$$value;
                 }
                 if (isEmit) {
-                    group.$emitChange(event, this);
+                    group.$$emitChange(event, this);
                 }
             }
         }
@@ -103,7 +103,7 @@ export default util.createElement({
     },
     mounted() {
         this.$nextTick(function () {
-            this.updateGroup(this.$checked, false);
+            this.updateGroup(this.$$checked, false);
         });
     }
 });

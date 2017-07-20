@@ -1,6 +1,6 @@
 <template>
     <WxaElement :tag="'checkbox'" :element="'label'" :hidden="hidden">
-        <input class="wxa-checkbox-native" type="checkbox" @change="onChange" :value="$value" :disabled="$disabled" :checked="$checked">
+        <input class="wxa-checkbox-native" type="checkbox" @change="onChange" :value="$$value" :disabled="$$disabled" :checked="$$checked">
         <span class="wxa-checkbox-inner" :style="{color:color}"></span>
         <slot></slot>
     </WxaElement>
@@ -59,7 +59,7 @@ export default util.createElement({
         }
     },
     computed: {
-        $value() {
+        $$value() {
             var val = this.value;
             if (val === null || val === undefined || (typeof val === 'number' && isNaN(val))) {
                 return '';
@@ -67,10 +67,10 @@ export default util.createElement({
                 return val + '';
             }
         },
-        $checked() {
+        $$checked() {
             return !isFalse(this.checked);
         },
-        $disabled() {
+        $$disabled() {
             return !isFalse(this.disabled);
         }
     },
@@ -83,16 +83,16 @@ export default util.createElement({
         updateGroup(checked, isEmit, event) {
             var checkGroup = this.$$closest('checkbox-group');
             if (checkGroup) {
-                var val = this.$value,
-                    index=checkGroup.values.indexOf(val);
-                if(index!=-1){
+                var val = this.$$value,
+                    index = checkGroup.values.indexOf(val);
+                if (index != -1) {
                     checkGroup.values.splice(index, 1);
                 }
                 if (!isFalse(checked)) {
-                    checkGroup.values.push(this.$value);
+                    checkGroup.values.push(this.$$value);
                 }
                 if (isEmit) {
-                    checkGroup.$emitChange(event, this);
+                    checkGroup.$$emitChange(event, this);
                 }
             }
         }
@@ -104,7 +104,7 @@ export default util.createElement({
     },
     mounted() {
         this.$nextTick(function () {
-            if (this.$checked) {
+            if (this.$$checked) {
                 this.updateGroup(true, false);
             }
         });

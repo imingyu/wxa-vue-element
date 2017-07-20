@@ -27,7 +27,7 @@ export default util.createElement({
         }
     },
     methods: {
-        $emitChange(nativeEvent, triggerComponent) {
+        $$emitChange(nativeEvent, triggerComponent) {
             var detail = {};
             detail.value = JSON.parse(JSON.stringify(this.value));
             this.$emit('wxa-change', new CustomEvent('change', nativeEvent, this, detail, triggerComponent))

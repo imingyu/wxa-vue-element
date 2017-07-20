@@ -1,17 +1,22 @@
 <template>
     <wxa-view>
-        <wxa-button>你好</wxa-button>
+        <wxa-button @wxa-tap="tap">Button</wxa-button>
     </wxa-view>
 </template>
 
 <script>
 export default {
     name: 'Index',
+    props: {
+    },
     data() {
         return {
         }
     },
     methods: {
+        tap() {
+            console.log('hello!');
+        },
         cd(e) {
             console.log(e);
         },
