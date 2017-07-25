@@ -8,8 +8,9 @@ import WxaCheckboxGroup from './elements/checkbox-group.vue';
 import WxaRadio from './elements/radio.vue';
 import WxaRadioGroup from './elements/radio-group.vue';
 import WxaButton from './elements/button.vue';
+import WxaProgress from './elements/progress.vue';
 
-const coms = [WxaView, WxaText, WxaIcon, WxaLabel, WxaCheckbox, WxaCheckboxGroup, WxaRadio, WxaRadioGroup, WxaButton];
+const coms = [WxaView, WxaText, WxaIcon, WxaLabel, WxaCheckbox, WxaCheckboxGroup, WxaRadio, WxaRadioGroup, WxaButton, WxaProgress];
 
 var pluginSpec = {
     install: (Vue, options) => {

@@ -175,9 +175,16 @@ export var convertStyle = styleContent => {
     var result = {};
     styleContent.split(';').forEach(item => {
         var arr = item.split(':');
-        if((arr[0]+'').trim()!=''){
+        if ((arr[0] + '').trim() != '') {
             result[camelize(arr[0])] = arr[1];
         }
     });
     return result;
+}
+
+export var isFalse = val => {
+    return val === false || val === null || val === undefined || val === '' || String.prototype.trim.call(val) == '' || (typeof val === 'number' && isNaN(val));
+}
+export var isEmpty = val => {
+    return val === null || val === undefined || val === '' || String.prototype.trim.call(val) == '' || (typeof val === 'number' && isNaN(val));
 }

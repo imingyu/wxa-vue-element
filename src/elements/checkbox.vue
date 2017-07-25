@@ -48,9 +48,6 @@
 
 <script>
 import util from '../util/index.js';
-var isFalse = val => {
-    return val === false || val === null || val === undefined || val === '' || (typeof val === 'number' && isNaN(val));
-}
 export default util.createElement({
     name: "WxaCheckbox",
     props: ['checked', 'value', 'disabled', 'color'],
@@ -61,17 +58,13 @@ export default util.createElement({
     computed: {
         $$value() {
             var val = this.value;
-            if (val === null || val === undefined || (typeof val === 'number' && isNaN(val))) {
-                return '';
-            } else {
-                return val + '';
-            }
+            return util.isEmpty(val) ? '' : val + "";
         },
         $$checked() {
-            return !isFalse(this.checked);
+            return !util.isFalse(this.checked);
         },
         $$disabled() {
-            return !isFalse(this.disabled);
+            return !util.isFalse(this.disabled);
         }
     },
     methods: {

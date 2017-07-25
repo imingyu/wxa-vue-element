@@ -1,6 +1,6 @@
 <template>
     <wxa-view>
-        <wxa-button @wxa-tap="tap">Button</wxa-button>
+        <wxa-progress :percent="80" show-info @wxa-tap="tap"></wxa-progress>
     </wxa-view>
 </template>
 
