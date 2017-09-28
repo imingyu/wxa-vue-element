@@ -1,6 +1,6 @@
 <template>
     <wxa-view>
-        <wxa-progress :percent="80" show-info @wxa-tap="tap"></wxa-progress>
+        <wxa-progress :percent="80" show-info @wxa-tap="tap" data-name="123" data-sd="3" :data-user="user"></wxa-progress>
     </wxa-view>
 </template>
 
@@ -11,11 +11,15 @@ export default {
     },
     data() {
         return {
+            user: {
+                name: 'Tom',
+                age: 20
+            }
         }
     },
     methods: {
-        tap() {
-            console.log('hello!');
+        tap(e) {
+            console.log(e);
         },
         cd(e) {
             console.log(e);

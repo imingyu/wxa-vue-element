@@ -14,8 +14,6 @@ export function mixin(componentSpec) {
         },
         created() {
             if (process.env.NODE_ENV !== 'development') return;
-            //prop.valid(this);
-            //event.valid(this);
         },
         mounted() {
             settingWxaValue.call(this, componentSpec);
@@ -45,19 +43,20 @@ export var getWxaDataset = (el) => {
     if (el.__vue__.$vnode.data.attrs) {
         ds = el.__vue__.$vnode.data.attrs;
     }
-    //TODO:data-*名称转换，如：data-user-name => userName
     for (prop in ds) {
         val = ds[prop];
+        prop = prop.substr('data-'.length);
+        prop = util.camelize(prop);
         if (typeof val === 'string') {
             if (regNumber.test(val)) {
                 result[prop] = parseFloat(val);
             } else if (regBool.test(val)) {
                 result[prop] = JSON.parse(val);
             } else {
-                result[prop] = ds[prop];
+                result[prop] = val;
             }
         } else {
-            result[prop] = ds[prop];
+            result[prop] = JSON.parse(JSON.stringify(val));
         }
     }
     delete result.wxa;
